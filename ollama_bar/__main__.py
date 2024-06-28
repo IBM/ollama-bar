@@ -31,12 +31,6 @@ class OllamaBarApp(rumps.App):
     def __del__(self):
         self._start_stop()
 
-    @rumps.clicked("stdout")
-    def stdout(self, _):
-        rumps.notification(
-            "stdout",
-        )
-
     ##########
     ## Impl ##
     ##########
