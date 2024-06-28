@@ -1,12 +1,12 @@
 # Standard
-from typing import Optional
 import os
 import signal
 import subprocess
-# import tempfile
 
 # Third Party
 import rumps
+
+# import tempfile
 
 
 class OllamaBarApp(rumps.App):
@@ -33,7 +33,9 @@ class OllamaBarApp(rumps.App):
 
     @rumps.clicked("stdout")
     def stdout(self, _):
-        rumps.notification("stdout", )
+        rumps.notification(
+            "stdout",
+        )
 
     ##########
     ## Impl ##
@@ -41,7 +43,7 @@ class OllamaBarApp(rumps.App):
 
     _RESOURCE_ROOT = os.path.join(os.path.dirname(__file__), "resources")
 
-    def _start_stop(self, sender: Optional[rumps.MenuItem]) -> None:
+    def _start_stop(self, sender: rumps.MenuItem | None) -> None:
         if self._ollama_server_proc is None:
             if sender is not None:
                 sender.title = "Stop"
@@ -49,7 +51,10 @@ class OllamaBarApp(rumps.App):
             # self._ollama_server_stdout = tempfile.TemporaryFile()
             # self._ollama_server_stderr = tempfile.TemporaryFile()
             self._ollama_server_proc = subprocess.Popen(
-                ["ollama", "serve"], # stdout=self._ollama_server_stdout, stderr=self._ollama_server_stderr,
+                [
+                    "ollama",
+                    "serve",
+                ],  # stdout=self._ollama_server_stdout, stderr=self._ollama_server_stderr,
             )
         else:
             if sender is not None:
@@ -68,5 +73,9 @@ class OllamaBarApp(rumps.App):
         return os.path.join(cls._RESOURCE_ROOT, name)
 
 
-if __name__ == "__main__":
+def main():
     OllamaBarApp().run()
+
+
+if __name__ == "__main__":
+    main()
