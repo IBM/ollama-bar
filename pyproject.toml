@@ -1,0 +1,115 @@
+[build-system]
+requires = ["setuptools>=60", "setuptools-scm>=8.0"]
+
+[project]
+name = "ollama-bar"
+dynamic = ["version"]
+description = "Macos status bar app that allows you to start/stop/view ollama from the menu bar."
+license = {text = "Apache-2.0"}
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers=[
+    "License :: OSI Approved :: Apache Software License"
+]
+
+dependencies = [
+    "rumps",
+]
+
+[project.scripts]
+
+ollama-bar = "ollama_bar.__main__:main"
+
+[project.optional-dependencies]
+
+## Dev Extra Sets ##
+
+dev-test = [
+    "pytest>=6",
+    "pytest-cov>=2.10.1",
+    "pytest-timeout>=2.1.0,<3",
+    "dill>=0.3.4,<0.4",
+    "Flask>=2.3,<4",
+]
+
+dev-fmt = [
+    "pre-commit>=3.0.4,<4.0",
+    "ruff==0.4.10",
+]
+
+dev-build = [
+    "setuptools>=60",
+    "setuptools-scm>=8.0",
+]
+
+# NOTE: This is "all" from the user and dev perspective
+dev = [
+    "ollama_bar[dev-test, dev-fmt, dev-build]"
+]
+
+[project.urls]
+Source = "https://github.com/IBM/ollama-bar"
+
+
+[tool.setuptools.packages.find]
+where = [""]
+include = ["ollama_bar"]
+
+[tool.setuptools_scm]
+write_to = "ollama_bar/_version.py"
+
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+
+[tool.ruff.lint]
+select = [ "E", "F", "UP", "B", "SIM", "I"]
+ignore = [
+    "UP032", # f-string
+    "UP034", # extraneous-parentheses
+    # "UP035", # deprecated-import
+
+    ## original errors fromt pylint
+    "F403", # unable to detect undefined names
+    "I001", # import block unsorted/unformatted
+    "E402", # module level import not at top of file
+    # "B028", # warnings: no explicit stacklevel keyword argument found
+    # "I0001", # raw-checker-failed
+    # "I0010", # bad-inline-option
+    # "I0011", # locally-disabled
+    # "I0013", # file-ignored
+    # "I0020", # suppressed-message
+    # "I0021", # useless-suppression
+    # "I0022", # deprecated-pragma
+
+    # "I0023", # use-symbolic-message-instead
+    # "C0103", # invalid-name
+    # "C0115", # missing-class-docstring
+    # "C0114", # missing-module-docstring
+    # "C0116", # missing-function-docstring
+    # "C0209", # consider-using-f-string
+    # "R1710", # inconsistent-return-statements
+    # "E1101", # no-member
+    # "R0913", # too-many-arguments
+    # "R0914", # too-many-locals
+    # "R0912", # too-many-branches
+    # "R0915", # too-many-statements
+    # "R0401", # cyclic-import
+    # "R0903", # too-few-public-methods
+    # "W0212", # protected-access
+    # "W0511", # fixme
+    # "W1202", # logging-format-interpolation
+    # "E1205", # logging-too-many-args
+    # "W0201", # attribute-defined-outside-init
+    # "W0223", # abstract-method
+    # "W0104", # pointless-statement
+    # "C0411", # wrong-import-order
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = [
+    "F401", # imported but unused
+    "F403" # unable to detect undefined names
+]
