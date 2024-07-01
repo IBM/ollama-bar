@@ -13,7 +13,7 @@ classifiers=[
 ]
 
 dependencies = [
-    "rumps",
+    "rumps>=0.4.0,<0.5.0",
 ]
 
 [project.scripts]
@@ -40,6 +40,7 @@ dev-fmt = [
 dev-build = [
     "setuptools>=60",
     "setuptools-scm>=8.0",
+    "py2app>=0.28.8,<0.29"
 ]
 
 # NOTE: This is "all" from the user and dev perspective
