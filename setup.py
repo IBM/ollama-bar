@@ -19,7 +19,11 @@ DATA_FILES = [
         ],
     ),
 ]
-OPTIONS = {}
+OPTIONS = {
+    "plist": {
+        "LSUIElement": True,
+    },
+}
 
 setup(
     app=APP,
