@@ -9,7 +9,7 @@ from rumps.rumps import NSApp
 import rumps
 
 # Local
-from .process_monitor import ProcessMonitor
+from ollama_bar.process_monitor import ProcessMonitor
 
 
 class CommandDisplayWindow:

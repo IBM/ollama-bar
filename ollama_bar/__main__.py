@@ -1,5 +1,5 @@
 # Local
-from .ollama_bar_app import OllamaBarApp
+from ollama_bar.ollama_bar_app import OllamaBarApp
 
 
 def main():

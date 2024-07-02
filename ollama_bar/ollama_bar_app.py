@@ -5,8 +5,8 @@ import os
 import rumps
 
 # Local
-from .command_display_window import CommandDisplayWindow
-from .process_monitor import ProcessMonitor
+from ollama_bar.command_display_window import CommandDisplayWindow
+from ollama_bar.process_monitor import ProcessMonitor
 
 
 class OllamaBarApp(rumps.App):
