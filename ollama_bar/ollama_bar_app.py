@@ -41,7 +41,8 @@ class OllamaBarApp(rumps.App):
         self._ollama_server_proc = None
 
     def __del__(self):
-        self._start_stop()
+        if self.running:
+            self._start_stop(None)
 
     @property
     def running(self) -> bool:
