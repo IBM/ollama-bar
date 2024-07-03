@@ -79,7 +79,10 @@ class ProcessMonitor:
             else self._stderr_callbacks
         )
         while True:
-            line = stream.readline()
+            try:
+                line = stream.readline()
+            except ValueError:
+                break
             if not line:
                 break
             line = line.rstrip("\n")
