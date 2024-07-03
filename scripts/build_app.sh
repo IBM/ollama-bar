@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env bash
 
 ################################################################################
 # This script is used to create an executable version of Ollama Bar app for

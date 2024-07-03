@@ -5,6 +5,7 @@ Usage:
     python setup.py py2app
 """
 
+# Third Party
 from setuptools import setup
 
 APP = ["ollama_bar/__main__.py"]
@@ -15,10 +16,14 @@ DATA_FILES = [
             "ollama_bar/resources/ollama.png",
             "ollama_bar/resources/on.svg",
             "ollama_bar/resources/off.svg",
-        ]
+        ],
     ),
 ]
-OPTIONS = {}
+OPTIONS = {
+    "plist": {
+        "LSUIElement": True,
+    },
+}
 
 setup(
     app=APP,
