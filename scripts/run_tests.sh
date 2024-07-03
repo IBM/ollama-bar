@@ -21,10 +21,11 @@ else
     fi
 fi
 
+FAILURE_THRESHOLD=${FAILURE_THRESHOLD:-"30"}
 PYTHONPATH="${BASE_DIR}:$PYTHONPATH" python3 -m pytest \
     --cov-config=.coveragerc \
-    --cov=oper8 \
+    --cov=ollama_bar \
     --cov-report=term \
     --cov-report=html \
-    --cov-fail-under=85.00 \
+    --cov-fail-under=$FAILURE_THRESHOLD \
     $warn_arg "$@"

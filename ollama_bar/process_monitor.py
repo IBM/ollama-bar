@@ -28,6 +28,11 @@ class ProcessMonitor:
         self._stdout_callbacks = stdout_callbacks or []
         self._stderr_callbacks = stderr_callbacks or []
         self._proc = None
+        self._stdout_stream = None
+        self._stderr_stream = None
+
+    def __del__(self):
+        self.stop()
 
     def register_callback(self, stream_type: str, callback: _LINE_CALLBACK):
         (
@@ -63,6 +68,8 @@ class ProcessMonitor:
             self._proc.send_signal(signal.SIGINT)
             self._proc.wait(timeout=5)
             self._proc.terminate()
+            self._stdout_stream.close()
+            self._stderr_stream.close()
 
     def _fill_stream_lines(self, stream_type: str):
         stream = self._stdout_stream if stream_type == "stdout" else self._stderr_stream
