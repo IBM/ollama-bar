@@ -1,6 +1,8 @@
 """
 Unit tests to cover CommandDisplayWindow
 """
+# Standard
+from unittest import mock
 
 # Local
 from ollama_bar.command_display_window import CommandDisplayWindow
@@ -78,3 +80,15 @@ def test_command_display_window_max_lines():
     for line in stdout_lines:
         mock_process_monitor.trigger_stdout_callbacks(line)
     assert window._lines == stdout_lines[-max_lines:]
+
+
+def test_command_display_window_dark_mode():
+    """Make sure the dark mode is applied correctly."""
+    with mock.patch("AppKit.NSUserDefaults") as NSUserDefaults_patch:
+        NSUserDefaults_patch.standardUserDefaults().stringForKey_.return_value = "Dark"
+        mock_process_monitor = MockProcessMonitor()
+        window = CommandDisplayWindow()
+        window.set_process(mock_process_monitor)
+        assert (
+            window._text_container.appearance().name() == "NSAppearanceNameVibrantDark"
+        )
