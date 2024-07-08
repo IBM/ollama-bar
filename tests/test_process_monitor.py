@@ -11,12 +11,14 @@ import pytest
 from ollama_bar.process_monitor import ProcessMonitor
 
 
-def test_process_monitor_stdout():
+@pytest.mark.parametrize("stream_name", ["stdout", "stderr"])
+def test_process_monitor_stdout(stream_name):
     """Test that ProcessMonitor can collect stdout iteratively"""
-    cmd = "bash -c 'echo one; echo two'"
+    redirect = "" if stream_name == "stdout" else "1>&2"
+    cmd = f"bash -c 'echo one {redirect}; echo two {redirect}'"
     pm = ProcessMonitor(cmd)
     collector = mock.MagicMock()
-    pm.register_callback("stdout", collector)
+    pm.register_callback(stream_name, collector)
     pm.start()
     pm._proc.wait()
     assert collector.call_count == 2
