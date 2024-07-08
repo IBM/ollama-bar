@@ -1,0 +1,5 @@
+[run]
+omit =
+    tests/**
+    ollama_bar/_version.py
+    ollama_bar/__main__.py

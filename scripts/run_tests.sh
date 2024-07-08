@@ -21,7 +21,7 @@ else
     fi
 fi
 
-FAILURE_THRESHOLD=${FAILURE_THRESHOLD:-"30"}
+FAILURE_THRESHOLD=${FAILURE_THRESHOLD:-"100"}
 PYTHONPATH="${BASE_DIR}:$PYTHONPATH" python3 -m pytest \
     --cov-config=.coveragerc \
     --cov=ollama_bar \

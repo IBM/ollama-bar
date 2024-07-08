@@ -18,7 +18,6 @@ class CommandDisplayWindow:
     def __init__(
         self,
         stream_type: str = "stdout",
-        process_monitor: ProcessMonitor | None = None,
         update_period: float = 0.5,
         max_lines: int = 20,
     ):
@@ -40,10 +39,6 @@ class CommandDisplayWindow:
         self._menuitem = NSMenuItem.alloc().init()
         self._menuitem.setTarget_(NSApp)
         self._menuitem.setView_(self._text_container)
-
-        # Register the update callback
-        if process_monitor is not None:
-            process_monitor.register_callback(self._stream_type, self.add_line_callback)
 
         # Set up a timer to update the display
         rumps.timer(update_period)(self.update_output)

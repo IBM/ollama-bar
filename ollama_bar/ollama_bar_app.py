@@ -41,7 +41,12 @@ class OllamaBarApp(rumps.App):
         self._ollama_server_proc = None
 
     def __del__(self):
-        self._start_stop()
+        if self.running:
+            self._start_stop(None)
+
+    @property
+    def running(self) -> bool:
+        return self._ollama_server_proc is not None
 
     ##########
     ## Impl ##
@@ -60,7 +65,7 @@ class OllamaBarApp(rumps.App):
             self._ollama_server_proc.start()
         else:
             if sender is not None:
-                sender.title = "Stop"
+                sender.title = "Start"
                 sender.icon = self._off_icon
             self._ollama_server_proc.stop()
             self._ollama_server_proc = None
