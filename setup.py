@@ -30,6 +30,6 @@ setup(
     data_files=DATA_FILES,
     options={"py2app": OPTIONS},
     setup_requires=["py2app"],
-    packages=["rumps>=0.4.0,<0.5.0"],
+    packages=["rumps==0.4.0", "open-webui==0.3.10"],
     license_file="LICENSE",
 )
