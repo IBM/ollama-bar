@@ -12,4 +12,4 @@
 rm -rf build/ dist/ ollama_bar.egg-info/
 
 # Perform a clean build of the application
-python setup.py py2app
+briefcase build
