@@ -8,6 +8,7 @@ coverage*.xml
 dist
 htmlcov
 build
+logs
 
 # IDEs
 .vscode/
