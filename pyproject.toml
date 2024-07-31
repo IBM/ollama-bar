@@ -159,6 +159,10 @@ test_requires = [
 universal_build = false
 requires = []
 
+[tool.briefcase.app.ollama_bar.macOS.app]
+
+info."LSUIElement" = true
+
 ## Unsupported Platforms ##
 
 [tool.briefcase.app.ollama_bar.linux]
