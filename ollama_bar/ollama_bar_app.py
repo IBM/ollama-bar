@@ -6,6 +6,7 @@ import rumps
 
 # Local
 from ollama_bar.command_display_window import CommandDisplayWindow
+from ollama_bar.output_capture import capture_output
 from ollama_bar.process_monitor import ProcessMonitor
 from ollama_bar.webui import OpenWebUIWrapper
 
@@ -33,6 +34,15 @@ class OllamaBarApp(rumps.App):
         self._ollama_cmd = "ollama serve"
         self._setup_process_menu_items(self._menu)
         self._menu.add(None)
+
+        # Pipe all stdout and stderr from the main python process to the output
+        # window along with the output of the ollama subprocess
+        self._stdout_cap = capture_output(
+            "stdout", self._stdout_window.add_line_callback
+        )
+        self._stderr_cap = capture_output(
+            "stderr", self._stderr_window.add_line_callback
+        )
 
         # Add a toggle to enable/disable Open WebUI
         self._menu.add(
