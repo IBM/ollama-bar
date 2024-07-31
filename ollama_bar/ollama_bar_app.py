@@ -19,7 +19,7 @@ class OllamaBarApp(rumps.App):
             title="",
             icon=self._resource("ollama.png"),
         )
-        self._run_webui = False
+        self._run_webui = True
 
         # Add start/stop menu
         self._on_icon = self._resource("on.svg")
