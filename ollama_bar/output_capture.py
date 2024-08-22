@@ -35,12 +35,6 @@ class OutputTeeBytesIO(io.BytesIO):
         for stream in self.streams:
             stream.flush(*args, **kwargs)
 
-    def readlines(self):
-        with self.write_lock:
-            lines = list(io.BytesIO(self._buffered_lines_content).readlines())
-            self._buffered_lines_content = b""
-        return lines
-
 
 class StreamLineBuffer:
     def __init__(self, line_callback):
