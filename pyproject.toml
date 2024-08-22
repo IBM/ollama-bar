@@ -7,7 +7,7 @@ dynamic = ["version"]
 description = "Macos status bar app that allows you to start/stop/view ollama from the menu bar."
 license = {text = "Apache-2.0"}
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 classifiers=[
     "License :: OSI Approved :: Apache Software License"
 ]
