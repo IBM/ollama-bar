@@ -20,6 +20,7 @@ def subprocess_popen_mock():
 def test_ollama_bar_app_start_stop(subprocess_popen_mock):
     """Test that the app initializes stopped, and can toggle through start/stop"""
     app = OllamaBarApp()
+    app._run_webui = False
     assert not app.running
 
     # Start the app and make sure it's running
@@ -40,6 +41,7 @@ def test_ollama_bar_app_start_stop(subprocess_popen_mock):
 def test_ollama_bar_stop_on_delete(subprocess_popen_mock, do_start):
     """Test that the app stops when it's deleted IFF it was started"""
     app = OllamaBarApp()
+    app._run_webui = False
     if do_start:
         app._start_stop(None)
     with mock.patch.object(app, "_start_stop") as start_stop:
