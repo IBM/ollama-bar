@@ -14,6 +14,7 @@ else
         sqlalchemy.exc.MovedIn20Warning
         DeprecationWarning
         RuntimeWarning
+        FutureWarning
     )
     warn_arg="-W error"
     for warning in "${allowed_warnings[@]}"
