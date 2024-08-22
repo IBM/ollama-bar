@@ -29,8 +29,8 @@ dev-test = [
     "pytest>=6",
     "pytest-cov>=2.10.1",
     "pytest-timeout>=2.1.0,<3",
-    "dill>=0.3.4,<0.4",
-    "Flask>=2.3,<4",
+    "tls-test-tools>=0.1.1,<0.2",
+    "requests>=2.32.2,<3",
 ]
 
 dev-fmt = [
