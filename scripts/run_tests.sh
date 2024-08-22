@@ -9,16 +9,18 @@ if [ "$allow_warnings" = "1" ]
 then
     warn_arg=""
 else
-    # NOTE: The AnsibleWatchManager raises an ImportWarning when ansible imports
-    #   systemd under the hood
-    warn_arg="-W error -W ignore::ImportWarning"
-
-    # If running with 3.12 or later, some of the dependencies use deprecated
-    # functionality
-    if [ "$(python --version | cut -d' ' -f 2 | cut -d'.' -f 2)" -gt "11" ]
-    then
-        warn_arg="$warn_arg -W ignore::DeprecationWarning"
-    fi
+    # NOTE: Open WebUI has some warnings that we can't control
+    allowed_warnings=(
+        sqlalchemy.exc.MovedIn20Warning
+        DeprecationWarning
+        RuntimeWarning
+        FutureWarning
+    )
+    warn_arg="-W error"
+    for warning in "${allowed_warnings[@]}"
+    do
+        warn_arg="$warn_arg -W ignore::$warning"
+    done
 fi
 
 FAILURE_THRESHOLD=${FAILURE_THRESHOLD:-"100"}

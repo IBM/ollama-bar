@@ -7,13 +7,14 @@ dynamic = ["version"]
 description = "Macos status bar app that allows you to start/stop/view ollama from the menu bar."
 license = {text = "Apache-2.0"}
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 classifiers=[
     "License :: OSI Approved :: Apache Software License"
 ]
 
 dependencies = [
     "rumps>=0.4.0,<0.5.0",
+    "open-webui>=0.3.10,<0.4",
 ]
 
 [project.scripts]
@@ -28,8 +29,8 @@ dev-test = [
     "pytest>=6",
     "pytest-cov>=2.10.1",
     "pytest-timeout>=2.1.0,<3",
-    "dill>=0.3.4,<0.4",
-    "Flask>=2.3,<4",
+    "tls-test-tools>=0.1.1,<0.2",
+    "requests>=2.32.2,<3",
 ]
 
 dev-fmt = [
@@ -40,7 +41,7 @@ dev-fmt = [
 dev-build = [
     "setuptools>=60",
     "setuptools-scm>=8.0",
-    "py2app>=0.28.8,<0.29"
+    "briefcase>=0.3.19,<0.4",
 ]
 
 # NOTE: This is "all" from the user and dev perspective
@@ -114,3 +115,81 @@ ignore = [
     "F401", # imported but unused
     "F403" # unable to detect undefined names
 ]
+
+## App build with Briefcase ####################################################
+
+# This project was generated with 0.3.19 using template: https://github.com/beeware/briefcase-template@v0.3.19
+[tool.briefcase]
+project_name = "ollama-bar"
+bundle = "com.ibm.ollama-bar"
+version = "0.0.1"
+url = "https://github.com/IBM/ollama-bar"
+license.file = "LICENSE"
+author = "Gabe Goodhart"
+author_email = "ghart@us.ibm.com"
+
+[tool.briefcase.app.ollama_bar]
+formal_name = "ollama-bar"
+description = "Macos status bar app that allows you to start/stop/view ollama from the menu bar.."
+long_description = """TODO"""
+sources = [
+    "ollama_bar",
+]
+test_sources = [
+    "tests",
+]
+
+# App does not run with a GUI
+console_app = true
+
+# TODO: Share references with project.dependencies
+requires = [
+    "rumps>=0.4.0,<0.5.0",
+    "open-webui>=0.3.10,<0.4",
+]
+test_requires = [
+    "pytest>=6",
+    "pytest-cov>=2.10.1",
+    "pytest-timeout>=2.1.0,<3",
+    "dill>=0.3.4,<0.4",
+    "Flask>=2.3,<4",
+]
+
+[tool.briefcase.app.ollama_bar.macOS]
+universal_build = false
+requires = []
+
+[tool.briefcase.app.ollama_bar.macOS.app]
+
+info."LSUIElement" = true
+
+## Unsupported Platforms ##
+
+[tool.briefcase.app.ollama_bar.linux]
+supported = false
+
+[tool.briefcase.app.ollama_bar.linux.system.debian]
+supported = false
+
+[tool.briefcase.app.ollama_bar.linux.system.rhel]
+supported = false
+
+[tool.briefcase.app.ollama_bar.linux.system.suse]
+supported = false
+
+[tool.briefcase.app.ollama_bar.linux.system.arch]
+supported = false
+
+[tool.briefcase.app.ollama_bar.linux.flatpak]
+supported = false
+
+# Mobile deployments
+[tool.briefcase.app.ollama_bar.iOS]
+supported = false
+
+[tool.briefcase.app.ollama_bar.android]
+supported = false
+
+# Web deployments
+[tool.briefcase.app.ollama_bar.web]
+supported = false
