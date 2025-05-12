@@ -1,3 +1,7 @@
+# ARCHIVED
+
+**This project predates the out-of-the-box desktop app support for Ollama. Please check out ollama.com/download to get the latest Ollama desktop app!**
+
 # Ollama Bar
 
 This is a simple macOS status bar that allows you to start/stop/view [ollama](https://ollama.com/) from the menu bar.
